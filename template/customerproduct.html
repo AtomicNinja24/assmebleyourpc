@@ -1,0 +1,41 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">Product</h1>
+        
+        <table border="1" style="margin-top: 50px;">
+        <tr>
+            
+            <th>PRODUCT</th>
+            <th>DESCRIPTION</th>
+            <th>SPECIALITY</th>
+            <th>IMAGE</th>
+            <th  colspan="2">RATE</th>
+            
+        </tr>
+        {% for d in data %}
+        <tr>
+         
+         
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td><img src="../static/{{d.5}}" height="150px" width="150px"></td>
+            <td>{{d.6}}</td>
+
+            <td><a href="/addtocart?id={{d.0}}">Select</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,138 @@
+<html>
+    <head>
+        <style>
+            body{
+                color: #1FBBA6;
+                font-size: large;
+            }
+            #container{
+                margin-left: 450px;
+                margin-top: 100px;
+                border-style: outset;
+                border-radius: 20px;
+                padding: 20px 20px 20px 20px;
+                width: 400px;
+                border-color: #006666;
+            }
+            input{
+                border-color: #999999;
+                border-radius: 5px;
+                width: 250px;
+                height: 30px;
+            }
+            select{
+                border-color: #999999;
+                border-radius: 5px;
+                height: 30px;
+            }
+            #inner{
+                margin: 20px 20px 20px 20px;
+            }
+            input[type="submit"]{
+                background-color: #1FBBA6;
+                color: #ffffff;
+                font-size: large;
+                border-color: #1FBBA6;
+            }
+            input[type="submit"]:hover{
+                background-color: #ffffff;
+                color: #1FBBA6;
+                border-color: #1FBBA6;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container" >
+            <div id="inner">
+                <center><h2>Card details</h2></center><hr>
+            </div>
+            <form method="POST">
+                {% csrf_token %} 
+            <table>
+                <tr>
+                    <td>Card Number</td>
+                    <td><input type="text" name="txtcardno" id="txtcardno" required="" pattern="[0-9]{12}"></td>
+                </tr>
+                <tr>
+                    <td>Expiry date</td>
+                    <td><select id="yr" onchange="loadyr()">
+                        <option>Select Year</option>
+                        <script>
+                            var today = new Date();
+                            var year=today.getFullYear();
+                            var x = document.getElementById("yr");
+                            for (i = year; i < year+11; i++)
+                            {
+                                var option = document.createElement("option");
+                                option.text = i;
+                                x.add(option);
+                            }
+                        </script>
+                    </select>
+                    <select id="mnth">
+                        <option>Select Month</option>
+                        <script>
+                            
+                            function loadyr(){
+                                debugger;
+                                var today = new Date();
+                                var year=parseInt(today.getFullYear());
+                                var syear=parseInt(document.getElementById("yr").value);
+
+                                var month=today.getMonth();
+                                var x = document.getElementById("mnth");
+
+                               
+                                var length = x.options.length;
+                                for (i = length-1; i >= 0; i--) {
+                                    x.remove(i);
+                                }
+                                
+                                
+                                if(syear==year)
+                                {
+                                    
+                                    for (i = month+1; i < 13; i++)
+                                    {
+                                        var option = document.createElement("option");
+                                        option.text = i;
+                                        x.add(option);
+                                    }
+                                }
+                                else{
+                                    for (i = 1; i < 13; i++)
+                                    {
+                                        var option = document.createElement("option");
+                                        option.text = i;
+                                        x.add(option);
+                                    }
+                                }
+                            }
+                        </script>
+                        
+                        
+                        </select>
+                    </td>
+                </tr>
+                 <tr>
+                    <td>Card Holder</td>
+                    <td><input type="text" id="txtName" required="" ></td>
+                </tr>
+                <tr>
+                    <td>CVV</td>
+                    <td><input type="password" id="txtCVV" minlength="3" maxlength="3" required="" ></td>
+                </tr>
+                <tr>
+                    <td>Enter our phone number</td>
+                    <td><input type="text" id="txtPhone" name="txtPhone" pattern="[6789][0-9]{9}" required="" ></td>
+                </tr>
+                 <tr>
+                    <td></td>
+                    <td><input type="submit" id="btnSubmit" name="btnSubmit"  value="Pay"></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+        
+    </body>
+</html>

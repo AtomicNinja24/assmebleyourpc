@@ -1,0 +1,83 @@
+{% extends 'adminbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">ASSEMBLED ORDER</h1>
+        <table border="1" style="margin-top: 50px;">
+        <tr>
+            <td>INVOICE NO  </td>
+            <td>DISPLAY  </td>
+            <td>PROCESSOR  </td>
+            <td>HDD </td>
+            <td>RAM </td>
+            <td>TOTAL </td>
+            <td>CUSTOMER </td>
+            <td>DATE </td>
+            <td colspan="2">STATUS  </td>
+        </tr>
+       
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.6}}</td>
+            <td>{{d.7}}</td>
+            <td>{{d.8}}</td>
+            <!-- {% if d.8 == "ordered" %}
+                <td><a href="/adminselectcourier?id={{d.0}}">Select courier</a></td>
+            {% endif %} -->
+            {% if d.8 == "ordered" %}
+                <td><a href="/adminupdateorder?id={{d.0}}&order=assemble">Deliver order</a></td>
+            {% endif %}
+        </tr>   
+        {% endfor %}
+        </table><br><br><br>
+       
+    </div>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">Your orders</h1>
+        <table border="1" style="margin-top: 50px;">
+            <tr>
+                <td>INVOICE NO  </td>
+                <td>PRODUCT  </td>
+                <td>IMAGE  </td>
+                <td>DATE of ORDER </td>
+           
+                <td>RATE  </td>
+                <td>CUSTOMER  </td>
+                <td colspan="2">ORDER STATUS  </td>
+            </tr>
+           
+            {% for d in order %}
+            <tr>
+                <td>{{d.0}}</td>
+                <td>{{d.7}}</td>
+                <td><img src="../static{{d.10}}" height="150px" width="150px"></td>
+                <td>{{d.3}}</td>
+                <td>{{d.11}}</td>
+                <td>{{d.12}}</td>
+                <td>{{d.4}}</td>
+                <!-- {% if d.4 == "ordered" %}
+                <td><a href="/adminselectcourier?id={{d.0}}">Select courier</a></td>
+            {% endif %} -->
+            {% if d.4 == "ordered" %}
+                <td><a href="/adminupdateorder?id={{d.0}}&order=order">Deliver order</a></td>
+            {% endif %}
+            </tr>   
+            {% endfor %}
+        </table>
+        
+    </div>
+{% endblock %}

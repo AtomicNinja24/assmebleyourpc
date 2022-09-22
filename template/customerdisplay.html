@@ -1,0 +1,42 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">Display</h1>
+        
+        <table border="1" style="margin-top: 50px;">
+        <tr>
+            <th>ID</th>
+            <th>DISPLAY</th>
+            <th>SIZE</th>
+            <th>RESOLUTION</th>
+            <th>PANEL</th>
+            <th>SPECIALITY</th>
+            <th  colspan="2">RATE</th>
+            
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.7}}</td>
+
+            <td><a href="/customerhdd?id={{d.0}}">Select</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+    
+{% endblock %}

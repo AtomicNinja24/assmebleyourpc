@@ -1,0 +1,50 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">Cart</h1>
+        {% if amt %}
+        <table border="1" style="margin-top: 50px;">
+        <tr>
+            <td>INVOICE NO  </td>
+            <td>DISPLAY  </td>
+            <td>PROCESSOR  </td>
+            <td>HDD </td>
+            <td>RAM </td>
+            <td>TOTAL  </td>
+            
+        </tr>
+       
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            
+        </tr>   
+        {% endfor %}
+        </table>
+        <form method="POST">
+            {% csrf_token %}
+            <br><br>
+            <h4>Grand Total : {{amt}}</h4>
+            <br><input type="submit" name="pay" class="btn btn-primary" style="background-color: #e30577; width: 120px; border:none; outline: none;" value="Buy Now">
+            
+        </form>
+        {% else %}
+        <br><br><br><br><br><h4>No products in cart</h4>
+        {% endif %}
+    </div>
+    
+{% endblock %}

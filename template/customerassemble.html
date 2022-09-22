@@ -1,0 +1,33 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">Your PC</h1>
+        
+        <table border="1" style="margin-top: 50px;">
+        {% for d in data %}
+            <tr><td>INVOICE NO : </td><td>Rs.{{d.0}}</td></tr>
+            <tr><td>DISPLAY : </td> <td>{{d.1}}</td><td>Rs.{{d.2}}</td></tr>
+            <tr><td>PROCESSOR : </td><td>{{d.3}}</td><td>Rs.{{d.4}}</td></tr>
+            <tr><td>HDD :</td><td>{{d.5}}</td><td>Rs.{{d.6}}</td></tr>
+            <tr><td>RAM :</td><td>{{d.7}}</td><td>Rs.{{d.8}}</td></tr>
+            <tr><td>TOTAL : </td><td></td><td>{{d.9}}</td></tr>    
+            <tr><td>DATE : </td><td>{{d.10}}</td></tr>    
+        {% endfor %}
+        </table><br><br>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="submit" name="pay" class="btn btn-primary" style="background-color: #e30577; width: 120px; border:none; outline: none;" value="Pay Now">
+            <input type="submit" name="cart" class="btn btn-primary" style="background-color: #e30577; width: 120px; border:none; outline: none;" value="Buy later">
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'courierbase.html' %}
+{% block content %}
+<style>
+    th,td{
+        padding: 10px;
+    }
+    th{
+        background-color: #e30577;
+        color: white;
+    }
+    </style>
+    <div style="margin: 50px;">
+        <h1 style="margin: 10px;">ORDER</h1>
+        <table border="1" style="margin-top: 50px;">
+        <tr>
+            <td>INVOICE NO  </td>
+            <td>DISPLAY  </td>
+            <td>PROCESSOR  </td>
+            <td>HDD </td>
+            <td>RAM </td>
+            <td>TOTAL </td>
+            <td>CUSTOMER </td>
+            <td>DATE </td>
+            <td colspan="2">STATUS  </td>
+        </tr>
+       
+        {% for d in data %}
+        <tr>
+            <td>{{d.0}}</td>
+            <td>{{d.1}}</td>
+            <td>{{d.2}}</td>
+            <td>{{d.3}}</td>
+            <td>{{d.4}}</td>
+            <td>{{d.5}}</td>
+            <td>{{d.6}}</td>
+            <td>{{d.7}}</td>
+            <td>{{d.8}}</td>
+            
+                <td><a href="/courierupdate?id={{d.0}}">Update order</a></td>
+     
+        </tr>   
+        {% endfor %}
+        </table><br><br><br>
+       
+    </div>
+    
+{% endblock %}

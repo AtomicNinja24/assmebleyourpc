@@ -1,0 +1,39 @@
+{% extends 'customerbase.html' %}
+{% block content %}
+<style>
+th,td{
+    padding: 10px;
+}
+</style>
+<div style="margin: 50px;">
+    <h1 style="margin: 10px;">Requirement</h1><br>
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Category</td>
+                <td><select class="form-control" name="category">
+                   
+                        <option value="1">Assemble</option>
+                        <option value="2">Buy product</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Select your requirement</td>
+                <td><select class="form-control" name="txtSpeciality">
+                    <option>Basic use</option>
+                    <option>Office use</option>
+                    <option>Gaming</option>
+                    <option>Budget friendly</option>
+                    </select></td>
+            </tr>
+           
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary" style="background-color: #e30577; width: 120px; border:none; outline: none;" value="Submit"></td>
+            </tr>
+        </table><br>
+    </form>
+</div>
+
+{% endblock %}
